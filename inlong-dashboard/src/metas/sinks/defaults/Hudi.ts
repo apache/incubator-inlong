@@ -317,6 +317,32 @@ export default class HudiSink extends SinkInfo implements DataWithBackend, Rende
   @ColumnDecorator()
   @I18n('meta.Sinks.Hudi.PrimaryKey')
   primaryKey: string;
+
+  @FieldDecorator({
+    type: 'inputnumber',
+    initialValue: 100000,
+    props: values => ({
+      disabled: [110, 130].includes(values?.status),
+      min: 1,
+    }),
+    rules: [{ required: true }],
+    suffix: i18n.t('meta.Sinks.Hudi.RecordPreDayUnit'),
+  })
+  @I18n('meta.Sinks.Hudi.RecordPreDay')
+  recordPreDay: number;
+
+  @FieldDecorator({
+    type: 'inputnumber',
+    initialValue: 10,
+    props: values => ({
+      disabled: [110, 130].includes(values?.status),
+      min: 1,
+    }),
+    rules: [{ required: true }],
+    suffix: i18n.t('meta.Sinks.Hudi.CapacityPerRowUnit'),
+  })
+  @I18n('meta.Sinks.Hudi.CapacityPerRow')
+  capacityPerRow: number;
 }
 
 const getFieldListColumns = sinkValues => {
