@@ -48,7 +48,6 @@
         <module>inlong-sort-standalone</module>
         <module>inlong-manager</module>
         <module>inlong-dashboard</module>
-        <module>inlong-distribution</module>
     </modules>
 
     <properties>
@@ -1509,5 +1508,23 @@
         <system>GitHub Actions</system>
         <url>https://github.com/apache/inlong/actions</url>
     </ciManagement>
+
+    <profiles>
+        <profile>
+            <id>distribution</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>inlong-distribution</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>fast</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
 </project>
